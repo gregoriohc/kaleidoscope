@@ -3,6 +3,7 @@
 namespace Gregoriohc\Kaleidoscope\Tests;
 
 use Gregoriohc\Kaleidoscope\Tests\Models\User;
+use Gregoriohc\Kaleidoscope\Tests\Serializers\CustomSerializer;
 use Gregoriohc\Kaleidoscope\Tests\Transformers\CustomUserTransformer;
 
 class FractalizableTest extends TestCase
@@ -93,6 +94,42 @@ class FractalizableTest extends TestCase
         $this->seeArrayStructure($paginatedStructure, $paginateData);
     }
 
+    public function testModelSimplePagination()
+    {
+        User::setTransformer(null);
+
+        $paginatedStructure = [
+            'data' => [
+                '*' => [
+                    'type',
+                    'id',
+                    'attributes' => ['name', 'email', 'created_at', 'updated_at'],
+                ]
+            ],
+            'meta' => ['per-page', 'current-page', 'from', 'to'],
+            'links' => ['self', 'next', 'prev'],
+        ];
+
+        $originalData = [
+            [
+                'name' => 'John Doe',
+                'email' => 'john.doe@example.com',
+            ],
+            [
+                'name' => 'Jane Roe',
+                'email' => 'jane.roe@example.com',
+            ]
+        ];
+
+        foreach ($originalData as $item) {
+            User::create($item);
+        }
+
+        $paginateData = User::simplePaginate()->toArray();
+
+        $this->seeArrayStructure($paginatedStructure, $paginateData);
+    }
+
     public function testModelCustomTransformerPagination()
     {
         User::setTransformer(new CustomUserTransformer());
@@ -102,6 +139,43 @@ class FractalizableTest extends TestCase
                 '*' => [
                     'type',
                     'id',
+                    'attributes' => ['name'],
+                ]
+            ],
+            'meta' => ['total-pages', 'per-page', 'current-page', 'last-page', 'from', 'to'],
+            'links' => ['self', 'first', 'next', 'prev', 'last'],
+        ];
+
+        $originalData = [
+            [
+                'name' => 'John Doe',
+                'email' => 'john.doe@example.com',
+            ],
+            [
+                'name' => 'Jane Roe',
+                'email' => 'jane.roe@example.com',
+            ]
+        ];
+
+        foreach ($originalData as $item) {
+            User::create($item);
+        }
+
+        $paginateData = User::paginate()->toArray();
+
+        $this->seeArrayStructure($paginatedStructure, $paginateData);
+    }
+
+    public function testModelCustomSerializerPagination()
+    {
+        User::setSerializer(new CustomSerializer());
+
+        $paginatedStructure = [
+            'data' => [
+                '*' => [
+                    'type',
+                    'id',
+                    'attributes_count',
                     'attributes' => ['name'],
                 ]
             ],

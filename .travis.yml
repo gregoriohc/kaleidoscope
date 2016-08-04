@@ -23,8 +23,6 @@ matrix:
       env: LARAVEL_FRAMEWORK_VERSION=5.3.*
     - php: hhvm
       env: LARAVEL_FRAMEWORK_VERSION=5.2.*
-    - php: hhvm
-      env: LARAVEL_FRAMEWORK_VERSION=5.3.*
 
 before_script:
   - composer self-update
@@ -35,3 +33,4 @@ before_script:
  
 script: vendor/bin/phpunit
 
+after_script: ./codeclimate.sh
