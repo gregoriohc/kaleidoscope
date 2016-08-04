@@ -1,0 +1,36 @@
+{
+  "name": "gregoriohc/kaleidoscope",
+  "description": "Transformation/serialization layer package for Laravel based on Fractal from The PHP League",
+  "keywords": ["laravel", "package", "fractal", "transformer", "transformation", "serializer", "serialization", "presenter", "presentation"],
+  "homepage": "https://github.com/gregoriohc/kaleidoscope",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Gregorio Hernández Caso",
+      "email": "gregoriohc@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "illuminate/support": "5.1.*|5.2.*|5.3.*",
+    "illuminate/pagination": "5.1.*|5.2.*|5.3.*",
+    "illuminate/database": "5.1.*|5.2.*|5.3.*",
+    "league/fractal": "^0.13.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0",
+    "mockery/mockery": "^0.9.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Gregoriohc\\Kaleidoscope\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Gregoriohc\\Kaleidoscope\\Tests\\": "tests"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
