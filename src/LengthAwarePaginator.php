@@ -10,7 +10,7 @@ use League\Fractal\Resource\Collection;
 class LengthAwarePaginator extends BaseLengthAwarePaginator
 {
     /**
-     * @var \Illuminate\Database\Eloquent\Model|Fractalizable $fractalizableModel
+     * @var \Illuminate\Database\Eloquent\Model|Fractalizable
      */
     protected $fractalizableModel;
 
@@ -43,22 +43,23 @@ class LengthAwarePaginator extends BaseLengthAwarePaginator
      *
      * @return array
      */
-    protected function getExtras() {
+    protected function getExtras()
+    {
         return [
             'meta' => [
-                'total-pages' => $this->total(),
-                'per-page' => $this->perPage(),
+                'total-pages'  => $this->total(),
+                'per-page'     => $this->perPage(),
                 'current-page' => $this->currentPage(),
-                'last-page' => $this->lastPage(),
-                'from' => $this->firstItem(),
-                'to' => $this->lastItem(),
+                'last-page'    => $this->lastPage(),
+                'from'         => $this->firstItem(),
+                'to'           => $this->lastItem(),
             ],
             'links' => [
-                'self' => $this->selfPageUrl(),
+                'self'  => $this->selfPageUrl(),
                 'first' => $this->firstPageUrl(),
-                'next' => $this->nextPageUrl(),
-                'prev' => $this->previousPageUrl(),
-                'last' => $this->lastPageUrl(),
+                'next'  => $this->nextPageUrl(),
+                'prev'  => $this->previousPageUrl(),
+                'last'  => $this->lastPageUrl(),
             ],
         ];
     }

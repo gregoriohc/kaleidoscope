@@ -15,14 +15,14 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
 
     protected function configureDatabase()
     {
-        $db = new DB;
-        $db->addConnection(array(
+        $db = new DB();
+        $db->addConnection([
             'driver'    => 'sqlite',
             'database'  => ':memory:',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
-        ));
+        ]);
         $db->bootEloquent();
         $db->setAsGlobal();
     }
@@ -40,8 +40,9 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
     /**
      * Assert that an array has a given structure.
      *
-     * @param  array  $structure
-     * @param  array  $data
+     * @param array $structure
+     * @param array $data
+     *
      * @return $this
      */
     public function seeArrayStructure(array $structure, $data)
@@ -59,6 +60,7 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
                 $this->assertArrayHasKey($value, $data);
             }
         }
+
         return $this;
     }
 }

@@ -8,17 +8,18 @@ use Illuminate\Database\Query\Builder as BaseBuilder;
 class QueryBuilder extends BaseBuilder
 {
     /**
-     * @var \Illuminate\Database\Eloquent\Model|Fractalizable $fractalizableModel
+     * @var \Illuminate\Database\Eloquent\Model|Fractalizable
      */
     protected $fractalizableModel;
 
     /**
      * Paginate the given query into a simple paginator.
      *
-     * @param  int  $perPage
-     * @param  array  $columns
-     * @param  string  $pageName
-     * @param  int|null  $page
+     * @param int      $perPage
+     * @param array    $columns
+     * @param string   $pageName
+     * @param int|null $page
+     *
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function paginate($perPage = 15, $columns = ['*'], $pageName = 'page[number]', $page = null)
@@ -30,13 +31,13 @@ class QueryBuilder extends BaseBuilder
         $results = $total ? $this->forPage($page, $perPage)->get($columns) : [];
 
         $paginator = new LengthAwarePaginator($results, $total, $perPage, $page, [
-            'path' => Paginator::resolveCurrentPath(),
+            'path'     => Paginator::resolveCurrentPath(),
             'pageName' => $pageName,
         ]);
 
         $paginator->setFractalizableModel($this->fractalizableModel);
 
-        $paginator->setPath($this->fractalizableModel->getPaginatorLinksBasePath() . $this->fractalizableModel->getResourceKey());
+        $paginator->setPath($this->fractalizableModel->getPaginatorLinksBasePath().$this->fractalizableModel->getResourceKey());
 
         return $paginator;
     }
@@ -46,10 +47,11 @@ class QueryBuilder extends BaseBuilder
      *
      * This is more efficient on larger data-sets, etc.
      *
-     * @param  int  $perPage
-     * @param  array  $columns
-     * @param  string  $pageName
-     * @param  int|null  $page
+     * @param int      $perPage
+     * @param array    $columns
+     * @param string   $pageName
+     * @param int|null $page
+     *
      * @return \Illuminate\Contracts\Pagination\Paginator
      */
     public function simplePaginate($perPage = 15, $columns = ['*'], $pageName = 'page[number]', $page = null)
@@ -58,14 +60,14 @@ class QueryBuilder extends BaseBuilder
 
         $this->skip(($page - 1) * $perPage)->take($perPage + 1);
 
-        $paginator =  new Paginator($this->get($columns), $perPage, $page, [
-            'path' => Paginator::resolveCurrentPath(),
+        $paginator = new Paginator($this->get($columns), $perPage, $page, [
+            'path'     => Paginator::resolveCurrentPath(),
             'pageName' => $pageName,
         ]);
 
         $paginator->setFractalizableModel($this->fractalizableModel);
 
-        $paginator->setPath($this->fractalizableModel->getPaginatorLinksBasePath() . $this->fractalizableModel->getResourceKey());
+        $paginator->setPath($this->fractalizableModel->getPaginatorLinksBasePath().$this->fractalizableModel->getResourceKey());
 
         return $paginator;
     }
