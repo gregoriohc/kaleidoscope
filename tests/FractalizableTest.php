@@ -15,7 +15,7 @@ class FractalizableTest extends TestCase
         $userStructure = ['id', 'name', 'email', 'created_at', 'updated_at'];
 
         $originalData = [
-            'name' => 'John Doe',
+            'name'  => 'John Doe',
             'email' => 'john.doe@example.com',
         ];
 
@@ -40,7 +40,7 @@ class FractalizableTest extends TestCase
         $userStructure = ['id', 'name'];
 
         $originalData = [
-            'name' => 'John Doe',
+            'name'  => 'John Doe',
             'email' => 'john.doe@example.com',
         ];
 
@@ -68,21 +68,21 @@ class FractalizableTest extends TestCase
                     'type',
                     'id',
                     'attributes' => ['name', 'email', 'created_at', 'updated_at'],
-                ]
+                ],
             ],
-            'meta' => ['total-pages', 'per-page', 'current-page', 'last-page', 'from', 'to'],
+            'meta'  => ['total-pages', 'per-page', 'current-page', 'last-page', 'from', 'to'],
             'links' => ['self', 'first', 'next', 'prev', 'last'],
         ];
 
         $originalData = [
             [
-                'name' => 'John Doe',
+                'name'  => 'John Doe',
                 'email' => 'john.doe@example.com',
             ],
             [
-                'name' => 'Jane Roe',
+                'name'  => 'Jane Roe',
                 'email' => 'jane.roe@example.com',
-            ]
+            ],
         ];
 
         foreach ($originalData as $item) {
@@ -104,21 +104,21 @@ class FractalizableTest extends TestCase
                     'type',
                     'id',
                     'attributes' => ['name', 'email', 'created_at', 'updated_at'],
-                ]
+                ],
             ],
-            'meta' => ['per-page', 'current-page', 'from', 'to'],
+            'meta'  => ['per-page', 'current-page', 'from', 'to'],
             'links' => ['self', 'next', 'prev'],
         ];
 
         $originalData = [
             [
-                'name' => 'John Doe',
+                'name'  => 'John Doe',
                 'email' => 'john.doe@example.com',
             ],
             [
-                'name' => 'Jane Roe',
+                'name'  => 'Jane Roe',
                 'email' => 'jane.roe@example.com',
-            ]
+            ],
         ];
 
         foreach ($originalData as $item) {
@@ -140,21 +140,21 @@ class FractalizableTest extends TestCase
                     'type',
                     'id',
                     'attributes' => ['name'],
-                ]
+                ],
             ],
-            'meta' => ['total-pages', 'per-page', 'current-page', 'last-page', 'from', 'to'],
+            'meta'  => ['total-pages', 'per-page', 'current-page', 'last-page', 'from', 'to'],
             'links' => ['self', 'first', 'next', 'prev', 'last'],
         ];
 
         $originalData = [
             [
-                'name' => 'John Doe',
+                'name'  => 'John Doe',
                 'email' => 'john.doe@example.com',
             ],
             [
-                'name' => 'Jane Roe',
+                'name'  => 'Jane Roe',
                 'email' => 'jane.roe@example.com',
-            ]
+            ],
         ];
 
         foreach ($originalData as $item) {
@@ -177,21 +177,21 @@ class FractalizableTest extends TestCase
                     'id',
                     'attributes_count',
                     'attributes' => ['name'],
-                ]
+                ],
             ],
-            'meta' => ['total-pages', 'per-page', 'current-page', 'last-page', 'from', 'to'],
+            'meta'  => ['total-pages', 'per-page', 'current-page', 'last-page', 'from', 'to'],
             'links' => ['self', 'first', 'next', 'prev', 'last'],
         ];
 
         $originalData = [
             [
-                'name' => 'John Doe',
+                'name'  => 'John Doe',
                 'email' => 'john.doe@example.com',
             ],
             [
-                'name' => 'Jane Roe',
+                'name'  => 'Jane Roe',
                 'email' => 'jane.roe@example.com',
-            ]
+            ],
         ];
 
         foreach ($originalData as $item) {

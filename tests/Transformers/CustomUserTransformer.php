@@ -11,7 +11,7 @@ class CustomUserTransformer extends Fractal\TransformerAbstract
     {
         return [
             'id'      => (int) $user->id,
-            'name'   => $user->name,
+            'name'    => $user->name,
         ];
     }
 }

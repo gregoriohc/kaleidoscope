@@ -9,20 +9,21 @@ use Illuminate\Database\Eloquent\Model;
 class EloquentBuilder extends BaseBuilder
 {
     /**
-     * @var \Illuminate\Database\Eloquent\Model|Fractalizable $fractalizableModel
+     * @var \Illuminate\Database\Eloquent\Model|Fractalizable
      */
     protected $fractalizableModel;
 
     /**
      * Paginate the given query.
      *
-     * @param  int $perPage
-     * @param  array $columns
-     * @param  string $pageName
-     * @param  int|null $page
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @param int      $perPage
+     * @param array    $columns
+     * @param string   $pageName
+     * @param int|null $page
      *
      * @throws \InvalidArgumentException
+     *
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
     {
@@ -36,7 +37,7 @@ class EloquentBuilder extends BaseBuilder
 
             $total = $query->getCountForPagination();
 
-            $results = $total ? $this->forPage($page, $perPage)->get($columns) : new Collection;
+            $results = $total ? $this->forPage($page, $perPage)->get($columns) : new Collection();
         } else { // Laravel Framework 5.1.*
             $total = $this->query->getCountForPagination();
 
@@ -50,13 +51,13 @@ class EloquentBuilder extends BaseBuilder
         // @codeCoverageIgnoreEnd
 
         $paginator = new LengthAwarePaginator($results, $total, $perPage, $page, [
-            'path' => Paginator::resolveCurrentPath(),
+            'path'     => Paginator::resolveCurrentPath(),
             'pageName' => $pageName,
         ]);
 
         $paginator->setFractalizableModel($this->fractalizableModel);
 
-        $paginator->setPath($this->fractalizableModel->getPaginatorLinksBasePath() . $this->fractalizableModel->getResourceKey());
+        $paginator->setPath($this->fractalizableModel->getPaginatorLinksBasePath().$this->fractalizableModel->getResourceKey());
 
         return $paginator;
     }
@@ -64,10 +65,11 @@ class EloquentBuilder extends BaseBuilder
     /**
      * Paginate the given query into a simple paginator.
      *
-     * @param  int $perPage
-     * @param  array $columns
-     * @param  string $pageName
-     * @param  int|null $page
+     * @param int      $perPage
+     * @param array    $columns
+     * @param string   $pageName
+     * @param int|null $page
+     *
      * @return \Illuminate\Contracts\Pagination\Paginator
      */
     public function simplePaginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
@@ -79,13 +81,13 @@ class EloquentBuilder extends BaseBuilder
         $this->skip(($page - 1) * $perPage)->take($perPage + 1);
 
         $paginator = new Paginator($this->get($columns), $perPage, $page, [
-            'path' => Paginator::resolveCurrentPath(),
+            'path'     => Paginator::resolveCurrentPath(),
             'pageName' => $pageName,
         ]);
 
         $paginator->setFractalizableModel($this->fractalizableModel);
 
-        $paginator->setPath($this->fractalizableModel->getPaginatorLinksBasePath() . $this->fractalizableModel->getResourceKey());
+        $paginator->setPath($this->fractalizableModel->getPaginatorLinksBasePath().$this->fractalizableModel->getResourceKey());
 
         return $paginator;
     }

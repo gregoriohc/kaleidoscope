@@ -12,10 +12,10 @@ class CustomSerializer extends Fractal\Serializer\JsonApiSerializer
 
         $resource = [
             'data' => [
-                'type' => $resourceKey,
-                'id' => "$id",
+                'type'             => $resourceKey,
+                'id'               => "$id",
                 'attributes_count' => count($data),
-                'attributes' => $data,
+                'attributes'       => $data,
             ],
         ];
 

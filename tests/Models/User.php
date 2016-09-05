@@ -2,8 +2,8 @@
 
 namespace Gregoriohc\Kaleidoscope\Tests\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Gregoriohc\Kaleidoscope\Fractalizable;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
