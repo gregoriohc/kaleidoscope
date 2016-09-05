@@ -26,6 +26,7 @@ class EloquentBuilder extends BaseBuilder
      */
     public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
     {
+        // @codeCoverageIgnoreStart
         if (method_exists($this, 'toBase')) { // Laravel Framework 5.2.* or 5.3.*
             $page = $page ?: Paginator::resolveCurrentPage($pageName);
 
@@ -46,6 +47,7 @@ class EloquentBuilder extends BaseBuilder
 
             $results = $this->get($columns);
         }
+        // @codeCoverageIgnoreEnd
 
         $paginator = new LengthAwarePaginator($results, $total, $perPage, $page, [
             'path' => Paginator::resolveCurrentPath(),

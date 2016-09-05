@@ -52,7 +52,7 @@ class Paginator extends BasePaginator
                 'to' => $this->lastItem(),
             ],
             'links' => [
-                'self' => $this->nextPageUrl(),
+                'self' => $this->selfPageUrl(),
                 'next' => $this->nextPageUrl(),
                 'prev' => $this->previousPageUrl(),
             ],
