@@ -10,7 +10,7 @@ use League\Fractal\Resource\Collection;
 class Paginator extends BasePaginator
 {
     /**
-     * @var \Illuminate\Database\Eloquent\Model|Fractalizable $fractalizableModel
+     * @var \Illuminate\Database\Eloquent\Model|Fractalizable
      */
     protected $fractalizableModel;
 
@@ -43,13 +43,14 @@ class Paginator extends BasePaginator
      *
      * @return array
      */
-    protected function getExtras() {
+    protected function getExtras()
+    {
         return [
             'meta' => [
-                'per-page' => $this->perPage(),
+                'per-page'     => $this->perPage(),
                 'current-page' => $this->currentPage(),
-                'from' => $this->firstItem(),
-                'to' => $this->lastItem(),
+                'from'         => $this->firstItem(),
+                'to'           => $this->lastItem(),
             ],
             'links' => [
                 'self' => $this->selfPageUrl(),

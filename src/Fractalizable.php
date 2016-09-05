@@ -12,7 +12,7 @@ use League\Fractal\Serializer\SerializerAbstract;
 
 /**
  * @method \Illuminate\Database\Connection getConnection()
-*/
+ */
 trait Fractalizable
 {
     /**
@@ -37,18 +37,18 @@ trait Fractalizable
         $resource = new Item($this, $this->getTransformer());
 
         return $manager->createData($resource)->toArray();
-
     }
 
     /**
      * @param $query
+     *
      * @return EloquentBuilder
      */
     public function newEloquentBuilder($query)
     {
         $builder = new EloquentBuilder($query);
 
-        /** @var Model $this */
+        /* @var Model $this */
         $builder->setFractalizableModel($this);
 
         return $builder;
@@ -65,7 +65,7 @@ trait Fractalizable
 
         $builder = new QueryBuilder($conn, $grammar, $conn->getPostProcessor());
 
-        /** @var Model $this */
+        /* @var Model $this */
         $builder->setFractalizableModel($this);
 
         return $builder;
@@ -73,6 +73,7 @@ trait Fractalizable
 
     /**
      * @param SerializerAbstract|null $serializer
+     *
      * @return $this
      */
     public static function setSerializer(SerializerAbstract $serializer)
@@ -90,6 +91,7 @@ trait Fractalizable
 
     /**
      * @param \League\Fractal\TransformerAbstract|\Closure|null $transformer
+     *
      * @return $this
      */
     public static function setTransformer($transformer)
@@ -102,7 +104,7 @@ trait Fractalizable
      */
     public static function getTransformer()
     {
-        return static::$transformer ?: function(Model $model) {
+        return static::$transformer ?: function (Model $model) {
             $attributes = $model->attributesToArray();
 
             return array_merge($attributes, $model->relationsToArray());
@@ -124,7 +126,9 @@ trait Fractalizable
     {
         $path = function_exists('config') ? trim(config('fractalizable.links_base_path'), '/') : '';
 
-        if (!empty($path)) $path .= '/';
+        if (!empty($path)) {
+            $path .= '/';
+        }
 
         return $path;
     }
